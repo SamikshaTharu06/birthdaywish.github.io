@@ -1,0 +1,476 @@
+* {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
+      background:
+        linear-gradient(120deg, rgba(255, 211, 226, 0.6) 0%, rgba(230, 208, 255, 0.35) 50%, rgba(255, 231, 201, 0.45) 100%),
+        url('tulip-garden.jpg') center/cover no-repeat;
+      overflow: hidden;
+      color: #444;
+    }
+
+    /* container */
+    .stage {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* intro overlay */
+    .intro {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(6px);
+      z-index: 40;
+      flex-direction: column;
+    }
+
+    .intro h1 {
+      font-size: 2rem;
+      color: #7b2a63;
+      margin-bottom: .8rem;
+      letter-spacing: .6px;
+    }
+
+    .start-btn {
+      background: linear-gradient(180deg, #ff9ab3, #ff6f9a);
+      border: none;
+      padding: .7rem 1.2rem;
+      border-radius: 999px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(123, 42, 99, 0.25);
+      transition: transform .18s ease;
+    }
+
+    .start-btn:active {
+      transform: translateY(2px) scale(.99)
+    }
+
+    /* stage center cake */
+    .center {
+      position: relative;
+      z-index: 15;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .cake {
+      width: 260px;
+      height: 180px;
+      margin: 0 auto 1rem;
+      position: relative;
+      display: block;
+      pointer-events: none;
+      z-index: 16;
+    }
+
+    /* plate */
+    .cake .plate {
+      position: absolute;
+      left: 50%;
+      bottom: 6px;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 22px;
+      background: linear-gradient(#fff, #f2f2f6);
+      border-radius: 50%;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      z-index: 1;
+    }
+
+    /* cake body */
+    .cake .body {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      width: 220px;
+      height: 110px;
+      background: linear-gradient(#fff7f9, #ffdfea);
+      border-radius: 18px 18px 40px 40px;
+      box-shadow: 0 10px 30px rgba(123, 42, 99, 0.12);
+      z-index: 2;
+      overflow: visible;
+    }
+
+    /* icing */
+    .cake .icing {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 230px;
+      height: 32px;
+      background: linear-gradient(90deg, #fff1f6, #ffe7f2);
+      border-radius: 16px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+      z-index: 3;
+    }
+
+    /* sprinkles */
+    .sprinkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      opacity: .95;
+    }
+
+    .spr1 {
+      left: 18%;
+      top: 24%;
+      background: #ff6b81
+    }
+
+    .spr2 {
+      left: 38%;
+      top: 20%;
+      background: #ffd166
+    }
+
+    .spr3 {
+      left: 58%;
+      top: 18%;
+      background: #b8a0ff
+    }
+
+    .spr4 {
+      left: 72%;
+      top: 26%;
+      background: #84e6f4
+    }
+
+    .spr5 {
+      left: 48%;
+      top: 30%;
+      background: #ffb178
+    }
+
+    .candles {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 4;
+    }
+
+    .candle {
+      width: 8px;
+      height: 22px;
+      background: #ffd96b;
+      border-radius: 3px;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06)
+    }
+
+    .flame {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 12px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #fff1a8, #ffb74d)
+    }
+
+    .message-line {
+      font-size: 1.2rem;
+      color: #5b2b56;
+      margin-top: .6rem;
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    /* small calendar card near the cake */
+    .calendar {
+      position: absolute;
+      right: calc(50% - 160px);
+      /* near cake */
+      top: 18%;
+      width: 110px;
+      height: 108px;
+      background: linear-gradient(180deg, #fff, #fff7f9);
+      border-radius: 12px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 17;
+    }
+
+    .calendar .month {
+      font-size: .8rem;
+      color: #7b2a63;
+      margin-top: 8px
+    }
+
+    .calendar .day {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ff6b81
+    }
+
+    /* portrait sticker (use portrait.jpg) */
+    .portrait {
+      position: fixed;
+      left: 18px;
+      top: 20px;
+      width: 125px;
+      height: 150px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+      transform: rotate(-8deg);
+      border: 6px solid rgba(255, 255, 255, 0.9);
+      z-index: 45;
+    }
+
+    /* balloons */
+    .balloon {
+      position: absolute;
+      bottom: -120px;
+      width: 72px;
+      height: 94px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      transform-origin: center bottom;
+      transition: transform .6s ease;
+      z-index: 5;
+      pointer-events: auto;
+      /* allow interaction */
+      cursor: pointer;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 28px;
+      background: rgba(0, 0, 0, 0.07);
+      border-radius: 2px;
+    }
+
+    /* tooltip shown on hover/touch */
+    .b-tooltip {
+      position: fixed;
+      padding: .5rem .7rem;
+      background: rgba(255, 255, 255, 0.95);
+      color: #7b2a63;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      font-weight: 600;
+      z-index: 60;
+      white-space: nowrap;
+      transform: translate(-50%, -110%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .18s ease, transform .2s ease;
+    }
+
+    .b-tooltip.show {
+      opacity: 1;
+      transform: translate(-50%, -130%);
+    }
+
+    /* different colors */
+    .b1 {
+      background: linear-gradient(180deg, #ff9aa2, #ff6b81)
+    }
+
+    .b2 {
+      background: linear-gradient(180deg, #ffd3a5, #ffb178)
+    }
+
+    .b3 {
+      background: linear-gradient(180deg, #c7f9ff, #84e6f4)
+    }
+
+    .b4 {
+      background: linear-gradient(180deg, #fbe7a6, #ffd166)
+    }
+
+    .b5 {
+      background: linear-gradient(180deg, #d4c1ff, #b8a0ff)
+    }
+
+    /* reuse colors in cycle */
+    /* floating animation */
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0)
+      }
+
+      98% {
+        transform: translateY(-120vh)
+      }
+
+      100% {
+        transform: translateY(-121vh)
+      }
+    }
+
+    .rising {
+      animation: floatUp var(--dur, 12s) linear forwards;
+    }
+
+    /* pop effect on individual */
+    @keyframes pop {
+      0% {
+        transform: scale(1);
+        opacity: 1
+      }
+
+      60% {
+        transform: scale(1.25);
+        opacity: .95
+      }
+
+      100% {
+        transform: scale(0);
+        opacity: 0
+      }
+    }
+
+    .popped {
+      animation: pop .45s ease forwards;
+      pointer-events: none
+    }
+
+    /* to-center convergence */
+    .to-center {
+      animation: toCenter .9s ease forwards;
+      z-index: 30;
+    }
+
+    @keyframes toCenter {
+      to {
+        transform: translate(-50%, -50%) scale(.8);
+        left: 50% !important;
+        top: 50% !important;
+        bottom: auto !important;
+        right: auto !important;
+        position: fixed;
+      }
+    }
+
+    /* central blast */
+    .blast {
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 35;
+      mix-blend-mode: screen;
+      opacity: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(255, 230, 240, 0.9), rgba(255, 200, 230, 0.6) 40%, rgba(255, 255, 255, 0) 70%);
+      filter: blur(22px);
+    }
+
+    @keyframes blastIn {
+      0% {
+        transform: translate(-50%, -50%) scale(.2);
+        opacity: .9
+      }
+
+      70% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: .85
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0
+      }
+    }
+
+    .blast.show {
+      animation: blastIn .9s ease forwards;
+    }
+
+    /* confetti */
+    .confetti-piece {
+      position: fixed;
+      width: 10px;
+      height: 14px;
+      opacity: 0.95;
+      z-index: 36;
+      pointer-events: none;
+      transform-origin: center;
+    }
+
+    /* year love popup shown when balloon popped by user */
+    .year-popup {
+      position: fixed;
+      left: 50%;
+      top: 20%;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, #fff7fb, #fff1f5);
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      box-shadow: 0 18px 50px rgba(123, 42, 99, 0.16);
+      color: #7b2a63;
+      z-index: 70;
+      text-align: center;
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity .28s ease, transform .28s ease;
+    }
+
+    .year-popup.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* footer */
+    /* .credit{
+      position:fixed;
+      bottom:12px;
+      width:100%;
+      text-align:center;
+      color:#7b2a63;
+      font-size:.1rem;
+      z-index:50;
+      pointer-events:none;
+    } */
+
+    /* text fade-in */
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: opacity .8s ease, transform .8s ease;
+    }
